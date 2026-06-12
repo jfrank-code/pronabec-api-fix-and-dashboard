@@ -1,28 +1,38 @@
 # Dashboard de Becarios - PRONABEC
 
-Este proyecto presenta una solución integral de análisis de datos desarrollada principalmente en Microsoft Excel, complementada con un diagnóstico técnico en Python para la optimización y corrección del proceso de extracción de datos.
+Este proyecto presenta una solución de análisis de datos desarrollada en Microsoft Excel, optimizada tras diagnosticar y solucionar un problema de conectividad con la API del portal de Datos Abiertos de PRONABEC.
 
-## 🔍 Diagnóstico Técnico e Ingeniería Inversa (Python)
+---
 
-Durante el planteamiento inicial, se identificó que el endpoint oficial de la API pública provisto en la documentación del portal de Datos Abiertos de PRONABEC generaba errores críticos de conexión (Error DNS/getaddrinfo) al intentar consumirse desde herramientas externas como Excel.
+### 🚀 Acceso Directo al Proyecto (Excel Cloud)
 
-![Error de la API Oficial](img/api_error.png)
+Puedes interactuar con el Dashboard en tiempo real, con filtros dinámicos y sin necesidad de descargar el archivo, ingresando al siguiente enlace optimizado para navegadores:
 
-Para diagnosticar la falla, se utilizó un script en Python que analizó el código fuente de la página web. Este análisis demostró que el dominio de la API oficial se encuentra inoperable y que el portal renderiza sus tablas internamente mediante el plugin `jqGrid`. A través de este diagnóstico, se aislaron las direcciones URL de los controladores internos reales del backend, proporcionando la ruta de acceso definitiva a las bases de datos.
+👉 [**Abrir Dashboard Interactivo en Excel para la Web**](https://excel.cloud.microsoft/open/onedrive/?docId=FE99D4263DF41BBC%21s33923ccc57984506b23773d5b17383f3&driveId=fe99d4263df41bbc)
 
-## 🛠️ Extracción, Procesamiento y Modelado de Datos (Power Query)
+---
 
-Una vez identificadas las rutas correctas del servidor, todo el flujo de datos se trasladó a **Microsoft Excel**:
+## 🔍 Diagnóstico Técnico y Análisis de Red (Python)
 
-1. **Conexión y Extracción:** Se utilizó el motor de **Power Query** para conectarse directamente a los endpoints ocultos del servidor, logrando importar de forma limpia la totalidad de los registros (incluyendo el dataset masivo de **87,576 filas** de becarios por país de estudio).
-2. **Transformación (ETL):** Se realizaron tareas de limpieza, tipado de datos y filtrado estructurado dentro del editor de Power Query para estandarizar las columnas de texto y fechas.
+Durante el planteamiento inicial, se identificó que el endpoint oficial de la API pública provisto en la documentación de PRONABEC generaba errores de conexión al intentar consumirse desde Excel. 
 
-## 📊 Arquitectura del Dashboard (Excel)
+Para resolver el problema, se utilizó un script básico de Python y las herramientas de desarrollador del navegador para inspeccionar las peticiones de red del portal. Se detectó que el sitio web realiza consultas internas a través del plugin `jqGrid`. Este análisis permitió identificar las URL reales del servidor que contienen los datos, superando el bloqueo de la documentación desactualizada.
 
-El cuadro de mando interactivo se construyó utilizando herramientas analíticas avanzadas de Excel para consolidar las métricas clave del programa de becas:
+![Error de la API Oficial](Images/api_error.png)
 
-* **Estructura Dinámica:** Implementación de tablas dinámicas combinadas con funciones lógicas y de búsqueda.
-* **Segmentación:** Integración de segmentadores de datos interconectados para permitir filtros multidimensionales por género, modalidad de beca e institución.
-* **Componente Geográfico:** Incorporación de un gráfico de mapa optimizado y adaptado visualmente para mantener su estética de fondo oscuro y rendimiento tanto en la aplicación local como en su despliegue en la nube a través de Excel para la Web.
+## 🛠️ Extracción y Procesamiento de Datos (Power Query)
 
-![Dashboard Final de Excel](img/dashboard_final.png)
+Con las rutas correctas identificadas, todo el flujo de trabajo se trasladó a **Microsoft Excel**:
+
+1. **Conexión Directa:** Se configuró **Power Query** para conectarse a los controladores internos del portal, permitiendo la descarga limpia de la base de datos completa (**87,576 registros históricos**) de becarios por país de estudio, sin lidiar con los límites de paginación de la web.
+2. **Transformación (ETL):** Limpieza de registros, tipado correcto de columnas y estandarización de formatos dentro del editor de Power Query.
+
+## 📊 Diseño del Dashboard (Excel)
+
+El cuadro de mando interactivo se consolidó utilizando herramientas nativas de Excel para garantizar una navegación fluida:
+
+* **Tablas Dinámicas y Fórmulas:** Estructuración de las métricas clave del programa de becas.
+* **Segmentadores:** Filtros interconectados por género, modalidad de beca e institución de destino.
+* **Optimización Web:** Uso de un diseño de fondo oscuro y gráficos de mapa configurados para mantener un alto rendimiento tanto en local como en su visualización en la nube.
+
+![Dashboard Final de Excel](Images/dashboard_final.png)
